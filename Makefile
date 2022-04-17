@@ -1,4 +1,4 @@
-SRCS	= ft_printf.c ft_putchar.c ft_putnbr.c ft_putstr.c
+SRCS	= ft_printf.c ft_putchar.c ft_putnbr.c ft_putstr.c ft_putnbr_pos.c ft_puthexa.c ft_putptr.c ft_puthexa_maj.c
 
 OBJS	= ${SRCS:.c=.o}
 

@@ -6,55 +6,25 @@
 /*   By: retcheba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:12:00 by retcheba          #+#    #+#             */
-/*   Updated: 2022/04/16 16:39:16 by retcheba         ###   ########.fr       */
+/*   Updated: 2022/04/17 00:21:27 by retcheba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static int	write_positive(long int nb)
+void	ft_putnbr(long nb, int *len)
 {
-	int		i;
-	int		len;
 	char	temp;
-	char	tab[12];
 
-	i = 0;
-	while (nb > 0)
-	{
-		tab[i] = nb % 10 + '0';
-		nb = nb / 10;
-		i++;
-	}
-	len = i;
-	while (i > 0)
-	{
-		i--;
-		temp = tab[i];
-		write(1, &temp, 1);
-	}
-	return (len);
-}
-
-int	ft_putnbr(int n)
-{
-	long int	nb;
-	int			len;
-
-	nb = n;
-	len = 0;
-	if (nb == 0)
-	{
-		write(1, "0", 1);
-		len++;
-	}
+	temp = 0;
 	if (nb < 0)
 	{
 		nb *= -1;
 		write(1, "-", 1);
-		len++;
+		*len += 1;
 	}
-	if (nb > 0)
-		len += write_positive(nb);
-	return (len);
+	if (nb >= 10)
+		ft_putnbr((nb / 10), len);
+	temp = (nb % 10) + '0';
+	*len += write (1, &temp, 1);
 }

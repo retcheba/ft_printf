@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: retcheba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 18:08:55 by retcheba          #+#    #+#             */
-/*   Updated: 2022/04/16 22:03:10 by retcheba         ###   ########.fr       */
+/*   Created: 2022/04/15 18:12:00 by retcheba          #+#    #+#             */
+/*   Updated: 2022/04/16 16:39:16 by retcheba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(unsigned char *s)
+void	ft_putnbr_pos(unsigned int nb, int *len)
 {
-	int	len;
+	char	temp;
 
-	len = 0;
-	if (!s)
-	{
-		len += write(1, "(null)", 6);
-		return (len);
-	}
-	while (s[len])
-	{
-		write(1, &s[len], 1);
-		len++;
-	}
-	return (len);
+	temp = 0;
+	if (nb >= 10)
+		ft_putnbr((nb / 10), len);
+	temp = (nb % 10) + '0';
+	*len += write (1, &temp, 1);
 }
